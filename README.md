@@ -4,7 +4,8 @@
 ## [GitHub](https://github.com/ViryF) | [LinkedIn](https://www.linkedin.com/in/viridianaflores) | [DeployedApp](linkHere)
 ***
 ## ***Description***
-## A brief description of the project, What it's about, when and what you made it for, etc. ...
+## There are two sides to every coin. On one side, the goal of this application is to make it easy for employers to be able to post a job opening for other people to view and apply to. The other side of this coin is for job seekers to be able to look for any job posting they may be interested in, and find it with a simple search. This way, they are able to apply to whichever job(s) they choose to. Within this application, a job seeker can easily choose directly get in contact with an employer in case they have any additional questions, comments or concerns regarding a specific job posting. 
+
 ***
 ## ***Technologies Used***
 * HTML
