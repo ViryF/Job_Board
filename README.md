@@ -33,5 +33,6 @@
 ***
 ## ***Credits***
 ### Drawio Planning: [Drawio](https://drive.google.com/file/d/1pAuQHibs2pk4Cz6AieNckGC-EtY0A83j/view?usp=sharing)
+### Trello Workspace: [Trello](https://trello.com/invite/b/2wVLzugl/dddfda0382ca06bdb1f901139ba743ea/job-board)
 ### Markdown Guide: [ia.net](https://ia.net/writer/support/general/markdown-guide) 
 ### Markdown Cheatsheet: [GitHub](https://github.com/ViryF/u1_hw_markdown)
