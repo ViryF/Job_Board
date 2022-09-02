@@ -10,6 +10,7 @@ router.get('/:id', employerController.getEmployerById)
 router.post('/new', employerController.createEmployer)
 
 // update routes
+router.put('/:id', employerController.updateEmployerById)
 
 // delete routes
 

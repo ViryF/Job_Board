@@ -34,6 +34,17 @@ const getEmployerById = async (req,res) => {
   }
 }
 
+const updateEmployerById = async (req,res) => {
+  try {
+    const employer = await Employer.findByIdAndUpdate(req.params.id, req.body, {
+      new: true
+    })
+    res.status(200).json(employer)
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 const deleteEmployerById = async (req,res) => {
   try {
     const { id } = req.params
@@ -51,5 +62,6 @@ module.exports = {
   createEmployer,
   getAllEmployers,
   getEmployerById, 
+  updateEmployerById,
   deleteEmployerById
 }
