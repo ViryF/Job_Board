@@ -27,23 +27,24 @@ const getAllJobPosts = async (req,res) => {
   }
 }
 
-const getJobPostsByEmployer = async (req,res) => {
-  try {
-    // let compan = req.params._id
-    const allPosts = await Employer.findOne({companyName: req.body.companyName }).populate('jobPosts').exec((err, jobPosts) => {
-      console.log("Populated Employer " + jobPosts)
-    })
-    return res.status(200).json(allPosts)
-  } catch (error) {
-    return res.status(500).send(error.message)
-  }
-}
+// const getJobPostsByEmployer = async (req,res) => {
+//   try {
+//     // let compan = req.params._id
+//     const allPosts = await Employer.findOne({companyName: req.body.companyName }).populate('jobPosts').exec((err, jobPosts) => {
+//       console.log("Populated Employer " + jobPosts)
+//     })
+//     return res.status(200).json(allPosts)
+//   } catch (error) {
+//     return res.status(500).send(error.message)
+//   }
+// }
 
+// NEED TO FIGURE OUT, WHY I CAN'T GET ALL POSTS FOR 1 EMPLOYER!
 
 
 
 module.exports = {
   createJobPost,
   getAllJobPosts,
-  getJobPostsByEmployer
+  // getJobPostsByEmployer
 }
