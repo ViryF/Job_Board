@@ -1,4 +1,4 @@
-const Employer = require('../models/employer')
+const { Employer } = require('../models')
 
 const createEmployer = async (req,res) => {
   try {
@@ -12,10 +12,20 @@ const createEmployer = async (req,res) => {
   }
 }
 
-const getAllEmployers = async
+const getAllEmployers = async (req,res) => {
+  try{
+    const employers = await Employer.find()
+    return res.status(200).json(employers)
+  } catch (error) { 
+    return res.status(500).send(error.message)
+  }
+}
 
-const getEmployerById = 
+const getEmployerById = async (req,res) => {
+  
+}
 
 module.exports = {
-  createEmployer
+  createEmployer,
+  getAllEmployers
 }

@@ -1,4 +1,4 @@
-const Seeker = require('../models/seeker')
+const { Seeker } = require('../models')
 
 const createSeeker = async (req,res) => {
   try{

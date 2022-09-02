@@ -1,5 +1,7 @@
 const { Router } = require('express')
 const router = Router()
-const employerController = require('../controllers')
+const { employerController } = require('../controllers')
 
-module.exports = Router
+router.get('/', employerController.getAllEmployers)
+
+module.exports = router

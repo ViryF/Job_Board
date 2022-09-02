@@ -6,9 +6,9 @@ const seekerRouter = require('./seekerRouter')
 
 
 router.get('/', (req, res) => res.send('This is root!'))
-router.use('/employer', employerRouter)
-router.use('/jobPost', jobPostRouter)
-router.use('/seeker', seekerRouter)
+router.use('/employers', employerRouter)
+router.use('/jobPosts', jobPostRouter)
+router.use('/seekers', seekerRouter)
 
 
 module.exports = router;
