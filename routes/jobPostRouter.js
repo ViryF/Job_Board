@@ -13,7 +13,6 @@ router.get('/', jobPostController.getAllJobPosts)
 router.put('/:id', jobPostController.updateJobPostById)
 
 // delete routes
-
-// router.delete('/:id', employerController.deleteEmployerById)
+router.delete('/:id', jobPostController.deleteJobPostById)
 
 module.exports = router

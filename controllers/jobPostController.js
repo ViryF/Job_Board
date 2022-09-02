@@ -53,10 +53,22 @@ const updateJobPostById = async (req,res) => {
   }
 }
 
+const deleteJobPostById = async (req,res) => {
+  try {
+    const { id } = req.params
+    const deleted = await JobPost.findByIdAndDelete(id)
+    if (deleted) {
+      return res.status(200).send('Job post deleted!')
+    }
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
 
 module.exports = {
   createJobPost,
   getAllJobPosts,
   // getJobPostsByEmployer,
-  updateJobPostById
+  updateJobPostById,
+  deleteJobPostById
 }
