@@ -6,7 +6,7 @@ const { jobPostController } = require('../controllers')
 router.post('/post', jobPostController.createJobPost)
 
 // get routes
-router.get('/:employerId/posts', jobPostController.getEmployerJobPosts)
+router.get('/', jobPostController.getAllJobPosts)
 // router.get('/:id', employerController.getEmployerById)
 
 // update routes

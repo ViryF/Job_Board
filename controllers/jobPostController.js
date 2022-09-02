@@ -17,10 +17,9 @@ const createJobPost = async (req,res) => {
   }
 }
 
-const getEmployerJobPosts = async (req,res) => {
+const getAllJobPosts = async (req,res) => {
   try {
     let employerId = req.body.employer
-    console.log(employerId)
     const jobPosts = await JobPost.find(employerId)
     return res.status(200).json(jobPosts)
   } catch (error) {
@@ -29,7 +28,9 @@ const getEmployerJobPosts = async (req,res) => {
 }
 
 
+
+
 module.exports = {
   createJobPost,
-  getEmployerJobPosts
+  getAllJobPosts
 }
