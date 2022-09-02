@@ -22,10 +22,20 @@ const getAllEmployers = async (req,res) => {
 }
 
 const getEmployerById = async (req,res) => {
-  
+  try {
+    const { id } = req.params
+    const employer = await Employer.findById(id)
+    if(employer) {
+      res.status(200).json({ employer })
+    }
+    return res.status(404).send('Employer with the ID requested does not exist!')
+  } catch (error) {
+    res.status(500).send(error.message)
+  }
 }
 
 module.exports = {
   createEmployer,
-  getAllEmployers
+  getAllEmployers,
+  getEmployerById
 }
