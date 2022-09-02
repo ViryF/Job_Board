@@ -12,7 +12,7 @@
 * JavaScript
 * CSS
 * Bootstrap
-* React / Vue
+* React
 * MongoDB / Atlas
   * Adzuna API
 * Heroku
