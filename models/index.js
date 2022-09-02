@@ -1,5 +1,4 @@
-const {mongoose, model } = require('mongoose')
-// const { model } = require('mongoose')
+const mongoose = require('mongoose')
 const employerSchema = require('./employer')
 const jobPostSchema = require('./jobPost')
 const seekerSchema = require('./seeker')
