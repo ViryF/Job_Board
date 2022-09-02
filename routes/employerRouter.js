@@ -13,5 +13,6 @@ router.post('/new', employerController.createEmployer)
 
 // delete routes
 
+router.delete('/:id', employerController.deleteEmployerById)
 
 module.exports = router

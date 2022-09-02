@@ -34,8 +34,22 @@ const getEmployerById = async (req,res) => {
   }
 }
 
+const deleteEmployerById = async (req,res) => {
+  try {
+    const { id } = req.params
+    const deleted = await Employer.findByIdAndDelete(id)
+    if (deleted) {
+      return res.status(200).send('Employer deleted')
+    }
+    throw new Error('Employer not found!')
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 module.exports = {
   createEmployer,
   getAllEmployers,
-  getEmployerById
+  getEmployerById, 
+  deleteEmployerById
 }
