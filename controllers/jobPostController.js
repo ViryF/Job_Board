@@ -29,10 +29,11 @@ const getAllJobPosts = async (req,res) => {
 
 // const getJobPostsByEmployer = async (req,res) => {
 //   try {
-//     // let compan = req.params._id
-//     const allPosts = await Employer.findOne({companyName: req.body.companyName }).populate('jobPosts').exec((err, jobPosts) => {
+//     let employerId = req.params._id
+//     const allPosts = await Employer.find({ employer: employerId }).populate('jobPosts').exec((err, jobPosts) => {
 //       console.log("Populated Employer " + jobPosts)
 //     })
+//     console.log(allPosts)
 //     return res.status(200).json(allPosts)
 //   } catch (error) {
 //     return res.status(500).send(error.message)
@@ -41,10 +42,21 @@ const getAllJobPosts = async (req,res) => {
 
 // NEED TO FIGURE OUT, WHY I CAN'T GET ALL POSTS FOR 1 EMPLOYER!
 
+const updateJobPostById = async (req,res) => {
+  try {
+    const jobPost = await JobPost.findByIdAndUpdate(req.params.id, req.body, {
+      new: true
+    })
+    res.status(200).json(jobPost)
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
 
 
 module.exports = {
   createJobPost,
   getAllJobPosts,
-  // getJobPostsByEmployer
+  // getJobPostsByEmployer,
+  updateJobPostById
 }

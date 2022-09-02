@@ -10,7 +10,7 @@ router.get('/', jobPostController.getAllJobPosts)
 // router.get('/:employerid', jobPostController.getJobPostsByEmployer)
 
 // update routes
-// router.put('/:id', employerController.updateEmployerById)
+router.put('/:id', jobPostController.updateJobPostById)
 
 // delete routes
 
