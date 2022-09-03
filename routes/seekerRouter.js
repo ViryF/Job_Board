@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const router = Router()
-const { seekerController } = require('../controllers')
+const { seekerController, authController } = require('../controllers')
+const middleware = require('../middleware')
 
 // get routes
 
@@ -8,6 +9,7 @@ router.get('/', seekerController.getAllSeekers)
 router.get('/:id', seekerController.getSeekerById)
 
 // post routes
+router.post('/register', authController.RegisterSeeker)
 router.post('/new', seekerController.createSeeker)
 
 

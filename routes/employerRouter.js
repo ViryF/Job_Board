@@ -1,12 +1,14 @@
 const { Router } = require('express')
 const router = Router()
-const { employerController } = require('../controllers')
+const { employerController, authController } = require('../controllers')
+const middleware = require('../middleware')
 
 // get routes
 router.get('/', employerController.getAllEmployers)
 router.get('/:id', employerController.getEmployerById)
 
 // post routes
+router.post('/register', authController.RegisterEmployer)
 router.post('/new', employerController.createEmployer)
 
 // update routes

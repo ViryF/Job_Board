@@ -2,10 +2,10 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS)
-const APP_SECRET = process.env.APP_SECRET
+const APP_SECRET = `${process.env.APP_SECRET}` // in the AUTH lesson - "APP_SECRET = "process.env.APP_SECRET", but in our last project, it worked with "APP_SECRET = `${process.env.APP_SECRET}`" as shown now. WHYY?!"
 
 const hashPassword = async (password) => {
-  let hashedPassword = await bcrypt.hash(password, SALT_ROUNDS)
+  let hashedPassword = await bcrypt.hash(password, SALT_ROUNDS) // in the AUTH lesson - the salt rounds should be "SALT_ROUNDS" but in our project, it worked with "process.env.SALT_ROUNDS" - "This time, it works with "SALT_ROUNDS""
   return hashedPassword
 }
 
