@@ -30,8 +30,8 @@ const getAllJobPosts = async (req,res) => {
 const getJobPostsByEmployer = async (req,res) => {
   try {
     let companyName = req.body.companyName
-    const allPosts = await Employer.findOne({ companyName: companyName }).populate('jobPosts').exec((err, jobPosts) => {
-      console.log("Populated Employer " + jobPosts)
+    const allPosts = await Employer.findOne({ companyName: companyName }).populate('JobPost').exec((err, JobPost) => {
+      console.log("Populated Employer " + JobPost)
     })
     return res.status(200).json(allPosts)
   } catch (error) {
@@ -39,7 +39,7 @@ const getJobPostsByEmployer = async (req,res) => {
   }
 }
 
-// NEED TO FIGURE OUT, WHY I CAN'T GET ALL POSTS FOR 1 EMPLOYER!
+// NEED TO FIGURE OUT, WHY I CAN'T GET ALL POSTS FOR 1 EMPLOYER AS A JSON OBJECT! BASED ON HOW THE FUNCTION CURRENTLY IS, MAY NEED TO CHANGE ROUTE TO NOT NEED A EMPLOYER-ID.
 
 const updateJobPostById = async (req,res) => {
   try {
@@ -55,6 +55,10 @@ const updateJobPostById = async (req,res) => {
 const deleteJobPostById = async (req,res) => {
   try {
     const { id } = req.params
+    // let employerId = req.body.employer
+    // const employer = await Employer.findById(employerId)
+    // employer.jobPosts.indexOf(id).splice(index, 1)
+    // console.log(jobPosts)
     const deleted = await JobPost.findByIdAndDelete(id)
     if (deleted) {
       return res.status(200).send('Job post deleted!')
