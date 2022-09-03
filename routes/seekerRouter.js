@@ -4,6 +4,7 @@ const { seekerController } = require('../controllers')
 
 // get routes
 
+router.get('/', seekerController.getAllSeekers)
 
 // post routes
 router.post('/new', seekerController.createSeeker)

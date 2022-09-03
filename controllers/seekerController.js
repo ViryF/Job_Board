@@ -12,6 +12,16 @@ const createSeeker = async (req,res) => {
   }
 }
 
+const getAllSeekers = async (req,res) => {
+  try {
+    const seekers = await Seeker.find()
+    return res.status(200).json(seekers)
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 module.exports = {
-  createSeeker
+  createSeeker,
+  getAllSeekers
 }
