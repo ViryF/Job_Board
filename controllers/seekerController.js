@@ -39,7 +39,20 @@ const updateSeekerById = async (req,res) => {
     const seeker = await Seeker.findByIdAndUpdate(req.params.id, req.body, {
       new: true
     })
-    return res.status(200).json(seeker)
+    res.status(200).json(seeker)
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
+const deleteSeekerById = async (req,res) => {
+  try {
+    const { id } = req.params
+    const deleted = await Seeker.findByIdAndDelete(id)
+    if(deleted) {
+      return res.status(200).send('Seeker deleted!')
+    }
+    throw new Error ('Seeker not found!')
   } catch (error) {
     return res.status(500).send(error.message)
   }
@@ -49,5 +62,6 @@ module.exports = {
   createSeeker,
   getAllSeekers,
   getSeekerById,
-  updateSeekerById
+  updateSeekerById,
+  deleteSeekerById
 }

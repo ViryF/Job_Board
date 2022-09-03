@@ -15,6 +15,7 @@ router.post('/new', seekerController.createSeeker)
 router.put('/:id', seekerController.updateSeekerById)
 
 // delete routes
+router.delete('/:id', seekerController.deleteSeekerById)
 
 
 module.exports = router
