@@ -60,6 +60,7 @@ const deleteJobPostById = async (req,res) => {
     if (deleted) {
       return res.status(200).send('Job post deleted!')
     }
+    throw new Error('Post not found!')
   } catch (error) {
     return res.status(500).send(error.message)
   }

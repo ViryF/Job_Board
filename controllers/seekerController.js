@@ -5,10 +5,10 @@ const createSeeker = async (req,res) => {
     const seeker = await new Seeker(req.body)
     await seeker.save()
     return res.status(201).json({ 
-      seeker })
+      seeker,
+    })
   } catch(error) {
     return res.status(500).json({ error: error.message })
-
   }
 }
 
