@@ -12,6 +12,7 @@ router.post('/new', seekerController.createSeeker)
 
 
 // update routes
+router.put('/:id', seekerController.updateSeekerById)
 
 // delete routes
 

@@ -21,22 +21,33 @@ const getAllSeekers = async (req,res) => {
   }
 }
 
-const getSeekerById = async (req,res) => {
+const getSeekerById = async (req,res) => { 
   try {
-    const { id } = req.params
+    let { id } = req.params
     const seeker = await Seeker.findById(id)
     if(seeker) {
-      res.status(200).json(seeker)
+      return res.status(200).json({ seeker })
     }
-    return res.status(404).send('Job skeeker with the ID requested does not exist!')
+    return res.status(404).send('Seeker with the ID requested does not exist!')
   } catch (error) {
-    res.status(500).send(error.message)
+    return res.status(500).send(error.message)
   }
 }
 
+const updateSeekerById = async (req,res) => {
+  try {
+    const seeker = await Seeker.findByIdAndUpdate(req.params.id, req.body, {
+      new: true
+    })
+    return res.status(200).json(seeker)
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
 
 module.exports = {
   createSeeker,
   getAllSeekers,
-  getSeekerById
+  getSeekerById,
+  updateSeekerById
 }
