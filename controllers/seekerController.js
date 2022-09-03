@@ -58,6 +58,15 @@ const deleteSeekerById = async (req,res) => {
   }
 }
 
+// const bookmarkJobPost = async (req,res) => {
+//   try {
+//     const { id } = req.params
+//     const bookmarked = await 
+//   } catch (error) {
+    
+//   }
+// }
+
 module.exports = {
   createSeeker,
   getAllSeekers,

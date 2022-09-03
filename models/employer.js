@@ -7,7 +7,7 @@ const employerSchema = new Schema(
     email: { type: String, required: true }, 
     companyName: { type: String, required: true }, 
     // passwordDigest: { type: String, required: true },
-    jobPosts: [{ type: Schema.Types.ObjectId, ref:'JobPost', required: false }]
+    jobPosts: [{ type: mongoose.Schema.Types.ObjectId, ref:'JobPost', required: false }]
   },
   { timestamps: true }
 )

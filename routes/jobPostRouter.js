@@ -7,7 +7,7 @@ router.post('/post', jobPostController.createJobPost)
 
 // get routes
 router.get('/', jobPostController.getAllJobPosts)
-// router.get('/:employerid', jobPostController.getJobPostsByEmployer)
+router.get('/:employerid', jobPostController.getJobPostsByEmployer)
 
 // update routes
 router.put('/:id', jobPostController.updateJobPostById)

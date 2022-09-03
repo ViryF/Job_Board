@@ -9,7 +9,7 @@ const jobPostSchema = new Schema(
     location: { type: String, required: true },  
     salary: { type: String, required: false },  
     application_url: { type: String, required: true},
-    employer: { type: Schema.Types.ObjectId, ref: 'Employer' },
+    employer: { type: mongoose.Schema.Types.ObjectId, ref: 'Employer' },
     seekers: [{ type: Schema.Types.ObjectId, ref: 'Seeker', required: false }]
   },
   { timestamps: true }
