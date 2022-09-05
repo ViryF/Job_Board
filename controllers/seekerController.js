@@ -1,4 +1,37 @@
 const { Seeker } = require('../models')
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
+const express = require('express')
+const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS)
+const APP_SECRET = `${process.env.APP_SECRET}`
+
+
+const registerSeeker = async (req,res) => {
+  try {
+    // const { email, companyName } = req.body
+    const hashedPassword = await bcrypt.hash(req.body.password, SALT_ROUNDS)
+    req.body.passwordDigest = hashedPassword
+    const seeker = await Seeker.create(req.body)
+    res.send(seeker)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
+const LoginSeeker = async (req,res) => {
+  await Seeker.findOne({ email: req.body.email }, (err, foundSeeker) => {
+    const isMatched = bcrypt.compare(req.body.password, foundSeeker.passwordDigest)
+    if (!foundSeeker || !isMatched) {
+      return res.render({ error: "Unauthorized!"})
+    }
+    let payload = {
+      id: foundSeeker.id,
+      email: foundSeeker.email
+    }
+    let token = jwt.sign(payload, APP_SECRET)
+    return res.send({ seeker: payload, token })
+  }).clone()
+}
 
 const createSeeker = async (req,res) => {
   try{
@@ -68,6 +101,8 @@ const deleteSeekerById = async (req,res) => {
 // }
 
 module.exports = {
+  registerSeeker,
+  LoginSeeker,
   createSeeker,
   getAllSeekers,
   getSeekerById,

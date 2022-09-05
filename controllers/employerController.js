@@ -5,19 +5,6 @@ const express = require('express')
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS)
 const APP_SECRET = `${process.env.APP_SECRET}`
 
-
-const createEmployer = async (req,res) => {
-  try {
-    const employer = await new Employer(req.body)
-    await employer.save()
-    return res.status(201).json({
-      employer,
-    })
-  } catch (error) {
-    return res.status(500).json({ error: error.message })
-  }
-}
-
 const registerEmployer = async (req,res) => {
   try {
     // const { email, companyName } = req.body
@@ -44,6 +31,19 @@ const LoginEmployer = async (req,res) => {
     return res.send({ employer: payload, token })
   }).clone()
 }
+
+const createEmployer = async (req,res) => {
+  try {
+    const employer = await new Employer(req.body)
+    await employer.save()
+    return res.status(201).json({
+      employer,
+    })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
 
 const getAllEmployers = async (req,res) => {
   try{

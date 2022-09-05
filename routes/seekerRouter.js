@@ -9,8 +9,8 @@ router.get('/', seekerController.getAllSeekers)
 router.get('/:id', seekerController.getSeekerById)
 
 // post routes
-// router.post('/login', authController.LoginEmployer)
-// router.post('/register', authController.RegisterSeeker)
+router.post('/login', seekerController.LoginSeeker)
+router.post('/register', seekerController.registerSeeker)
 router.post('/new', seekerController.createSeeker)
 
 
