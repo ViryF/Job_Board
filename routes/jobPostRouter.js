@@ -12,12 +12,12 @@ router.get('/', jobPostController.getAllJobPosts) //seekerController.stripToken,
 
 
 
-// router.get('/:employerid', jobPostController.getJobPostsByEmployer)
+// router.get('/:employerid', jobPostController.getJobPostsByEmployer) //this function is not working yet.
 
 // update routes
 router.put('/:id', employerController.stripToken, employerController.verifyToken, jobPostController.updateJobPostById)
 
 // delete routes
-router.delete('/:id', jobPostController.deleteJobPostById) // employerController.stripToken, employerController.verifyToken,
+router.delete('/:id', employerController.stripToken, employerController.verifyToken, jobPostController.deleteJobPostById) 
 
 module.exports = router

@@ -20,8 +20,8 @@ const main = async () => {
     // ]
 
     const seekers = [
-      { email: 'email1@email.com', firstName: 'Job', lastName: 'Seeker' }, 
-      { email: 'true@true.com', firstName: 'Casually', lastName: 'McBrowsing' }
+        { email: 'email1@email.com', firstName: 'Job', lastName: 'Seeker' }, 
+        { email: 'true@true.com', firstName: 'Casually', lastName: 'McBrowsing' }
     ]
 
 

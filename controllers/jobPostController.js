@@ -28,30 +28,31 @@ const getAllJobPosts = async (req,res) => {
   }
 }
 
-const getJobPostsByEmployer = async (req,res) => {
-  try {
-    let employerId = req.params._id
-    const employer = await Employer.findOne({ employerId: employerId }).populate('JobPost')
-    return res.status(200).json(employer.jobPosts)
-  } catch (error) {
-    return res.status(500).send(error.message)
-  }
-}
-
-// const getJobPostsByEmployer = async (req,res) => { THIS ONE IS NOT EVEN RECOGNIZING THE EMPLOYER ID FROM THE PARAMS AS AN EXISTING EMPLOYER, EVEN THOUGH IT IS WTF!! 
+// const getJobPostsByEmployer = async (req,res) => {
 //   try {
-//     const { id } = req.params
-//     const employer = await Employer.findById(id)
+//     let employerId = req.params._id
+//     const employer = await Employer.findOne({ employerId: employerId }).populate('jobPosts')
+//     console.log(employer)
 //     if (employer) {
-//       return res.status(200).json({ employer })
+//       let details = await JobPost.find(employer)
+//       employer.jobPosts
+//       return res.status(200).send(details)
 //     }
-//     return res.status(400).json('Employer with the specified ID does not exist')
+//     // const jobPostDetails = await JobPost.findById({ jobPosts._id })
+//     return res.status(200).json(employer)
 //   } catch (error) {
 //     return res.status(500).send(error.message)
 //   }
 // }
 
-// NEED TO FIGURE OUT, WHY I CAN'T GET ALL POSTS FOR 1 EMPLOYER AS A JSON OBJECT! BASED ON HOW THE FUNCTION CURRENTLY IS, MAY NEED TO CHANGE ROUTE TO NOT NEED A EMPLOYER-ID.
+// const getJobPostsByEmployer = async (req, res) => {
+//   try {
+//     const posts = await JobPost.find({ employer: req.params.id})
+//     return res.status(200).json(posts)
+//   } catch (error) {
+//     return res.status(500).send(error.message)
+//   }
+// }
 
 const updateJobPostById = async (req,res) => {
   try {
@@ -84,7 +85,7 @@ const deleteJobPostById = async (req,res) => {
 module.exports = {
   createJobPost,
   getAllJobPosts,
-  getJobPostsByEmployer,
+  // getJobPostsByEmployer,
   updateJobPostById,
   deleteJobPostById
 }
