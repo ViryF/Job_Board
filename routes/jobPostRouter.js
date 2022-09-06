@@ -1,18 +1,18 @@
 const { Router } = require('express')
 const router = Router()
-const { jobPostController } = require('../controllers')
+const { jobPostController, employerController, seekerController } = require('../controllers')
 
 // post routes
-router.post('/post', jobPostController.createJobPost)
+router.post('/post', employerController.stripToken, employerController.verifyToken, jobPostController.createJobPost)
 
 // get routes
-router.get('/', jobPostController.getAllJobPosts)
+router.get('/', seekerController.stripToken, seekerController.verifyToken, jobPostController.getAllJobPosts)
 // router.get('/:employerid', jobPostController.getJobPostsByEmployer)
 
 // update routes
-router.put('/:id', jobPostController.updateJobPostById)
+router.put('/:id', employerController.stripToken, employerController.verifyToken, jobPostController.updateJobPostById)
 
 // delete routes
-router.delete('/:id', jobPostController.deleteJobPostById)
+router.delete('/:id', employerController.stripToken, employerController.verifyToken, jobPostController.deleteJobPostById)
 
 module.exports = router

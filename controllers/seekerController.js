@@ -8,7 +8,6 @@ const APP_SECRET = `${process.env.APP_SECRET}`
 
 const registerSeeker = async (req,res) => {
   try {
-    // const { email, companyName } = req.body
     const hashedPassword = await bcrypt.hash(req.body.password, SALT_ROUNDS)
     req.body.passwordDigest = hashedPassword
     const seeker = await Seeker.create(req.body)
@@ -99,6 +98,30 @@ const deleteSeekerById = async (req,res) => {
     
 //   }
 // }
+const verifyToken = (req,res,next) => {
+  const { token } = res.locals
+  try {
+    let payload = jwt.verify(token, APP_SECRET)
+    if (payload) {
+      return next()
+    }
+    res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
+  } catch (error) {
+    res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
+  }
+}
+
+const stripToken = (req,res,next) => {
+  try {
+    const token = req.headers['authorization'].split(' ')[1]
+    if (token) {
+      res.locals.token = token
+      return next()
+    }
+  } catch (error) {
+    res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
+  }
+}
 
 module.exports = {
   registerSeeker,
@@ -107,5 +130,7 @@ module.exports = {
   getAllSeekers,
   getSeekerById,
   updateSeekerById,
-  deleteSeekerById
+  deleteSeekerById,
+  verifyToken,
+  stripToken
 }

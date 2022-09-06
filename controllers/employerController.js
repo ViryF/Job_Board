@@ -4,10 +4,10 @@ const bcrypt = require('bcrypt')
 const express = require('express')
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS)
 const APP_SECRET = `${process.env.APP_SECRET}`
+// const middleware = require('../middleware')
 
 const registerEmployer = async (req,res) => {
   try {
-    // const { email, companyName } = req.body
     const hashedPassword = await bcrypt.hash(req.body.password, SALT_ROUNDS)
     req.body.passwordDigest = hashedPassword
     const employer = await Employer.create(req.body)
@@ -91,6 +91,31 @@ const deleteEmployerById = async (req,res) => {
   }
 }
 
+const verifyToken = (req,res,next) => {
+  const { token } = res.locals
+  try {
+    let payload = jwt.verify(token, APP_SECRET)
+    if (payload) {
+      return next()
+    }
+    res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
+  } catch (error) {
+    res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
+  }
+}
+
+const stripToken = (req,res,next) => {
+  try {
+    const token = req.headers['authorization'].split(' ')[1]
+    if (token) {
+      res.locals.token = token
+      return next()
+    }
+  } catch (error) {
+    res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
+  }
+}
+
 module.exports = {
   createEmployer,
   registerEmployer,
@@ -98,5 +123,7 @@ module.exports = {
   getAllEmployers,
   getEmployerById, 
   updateEmployerById,
-  deleteEmployerById
+  deleteEmployerById,
+  verifyToken, 
+  stripToken
 }

@@ -46,8 +46,8 @@
 
 // module.exports = {
 //   stripToken,
-//   verifyToken,
-//   createToken,
-//   comparePassword,
-//   hashPassword
+//   verifyToken
+  // createToken,
+  // comparePassword,
+  // hashPassword
 // }
