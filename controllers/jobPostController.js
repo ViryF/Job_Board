@@ -1,6 +1,5 @@
 const { JobPost, Employer } = require('../models')
-// const employerSchema = require('../models/employer')
-// const jobPostSchema = require('../models/jobPost')
+const { index } = require('../models/seeker')
 
 const createJobPost = async (req,res) => {
   try{
@@ -29,17 +28,15 @@ const getAllJobPosts = async (req,res) => {
   }
 }
 
-// const getJobPostsByEmployer = async (req,res) => {
-//   try {
-//     let companyName = req.body.companyName
-//     const allPosts = await Employer.findOne({ companyName: companyName }).populate('JobPost').exec((err, JobPost) => {
-//       console.log("Populated Employer " + JobPost)
-//     })
-//     return res.status(200).json(allPosts)
-//   } catch (error) {
-//     return res.status(500).send(error.message)
-//   }
-// }
+const getJobPostsByEmployer = async (req,res) => {
+  try {
+    let employerId = req.params._id
+    const employer = await Employer.findOne({ employerId: employerId }).populate('JobPost')
+    return res.status(200).json(employer.jobPosts)
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
 
 // const getJobPostsByEmployer = async (req,res) => { THIS ONE IS NOT EVEN RECOGNIZING THE EMPLOYER ID FROM THE PARAMS AS AN EXISTING EMPLOYER, EVEN THOUGH IT IS WTF!! 
 //   try {
@@ -67,19 +64,15 @@ const updateJobPostById = async (req,res) => {
   }
 }
 
-const deleteJobPostById = async (req,res) => { //This function works to delete a jobPost by ID, but still does not remove it from the Employer array as reference. 
+const deleteJobPostById = async (req,res) => {
   try {
     const { id } = req.params
     const deleted = await JobPost.findByIdAndDelete(id)
+    console.log(deleted)
     if (deleted) {
-      employerSchema.pre('update', function(next) {
-        this.model('employers').update(
-          { },
-          { "$pull": { "jobPosts": this.id } },
-          { "multi": true },
-          next
-        )
-      })
+      let employer = await Employer.findById(deleted.employer)
+      employer.jobPosts.splice(employer.jobPosts.indexOf(deleted._id), 1)
+      await Employer.findByIdAndUpdate(deleted.employer, employer)
       return res.status(200).send('Job post deleted!')
     }
     throw new Error('Post not found!')
@@ -88,27 +81,10 @@ const deleteJobPostById = async (req,res) => { //This function works to delete a
   }
 }
 
-// const deleteJobPostById = async (req,res) => {
-//   try {
-//     const { id } = req.params
-//     const jobPost = await jobPostSchema.findByIdAndDelete(
-//       { _id: id },
-//       { new: true }
-//     )
-//     await employerSchema.update(
-//       { "jobPosts": id },
-//       { "$pull": { "jobPosts": id } }
-//     )
-//     await employerSchema.remove({ "_id": })
-//   } catch (error) {
-    
-//   }
-// }
-
 module.exports = {
   createJobPost,
   getAllJobPosts,
-  // getJobPostsByEmployer,
+  getJobPostsByEmployer,
   updateJobPostById,
   deleteJobPostById
 }

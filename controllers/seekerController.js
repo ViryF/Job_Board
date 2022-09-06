@@ -1,4 +1,4 @@
-const { Seeker } = require('../models')
+const { Seeker, JobPost } = require('../models')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const express = require('express')
@@ -90,14 +90,23 @@ const deleteSeekerById = async (req,res) => {
   }
 }
 
-// const bookmarkJobPost = async (req,res) => {
+// const bookmarkJobPost = async (req,res) => { // This one gives an error saying "cannot read properties of null (reading 'seekers' "
 //   try {
+//     let seekerId = req.body.seeker
 //     const { id } = req.params
-//     const bookmarked = await 
+//     const selectedJobPost = await JobPost.findById(id)
+//     const seeker = await Seeker.findById(seekerId)
+//     seeker.jobPosts.push(id)
+//     selectedJobPost.seekers.push(seekerId)
+//     await Seeker.findByIdAndUpdate(seekerId, seeker)
+//     return res.status(201).json({ 
+//       seeker,
+//     })
 //   } catch (error) {
-    
+//     return res.status(500).json({ error: error.message })
 //   }
 // }
+
 const verifyToken = (req,res,next) => {
   const { token } = res.locals
   try {
@@ -131,6 +140,7 @@ module.exports = {
   getSeekerById,
   updateSeekerById,
   deleteSeekerById,
+  // bookmarkJobPost,
   verifyToken,
   stripToken
 }
