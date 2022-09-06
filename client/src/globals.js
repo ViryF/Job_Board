@@ -1,0 +1,1 @@
+export const BASE_URL = 'https://api.adzuna.com/v1/api'
