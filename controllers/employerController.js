@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt')
 const express = require('express')
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS)
 const APP_SECRET = `${process.env.APP_SECRET}`
-// const middleware = require('../middleware')
 
 const registerEmployer = async (req,res) => {
   try {

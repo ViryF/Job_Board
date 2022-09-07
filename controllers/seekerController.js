@@ -90,26 +90,22 @@ const deleteSeekerById = async (req,res) => {
   }
 }
 
-// const bookmarkJobPost = async (req,res) => { // This one currently adds seeker ID to a jobPost, but does not add the jobPost on the seeker.
-//   try {
-//     let seekerId = req.body._id
-//     const { id } = req.params // of the jobPost
-//     const selectedJobPost = await JobPost.findById(id)
-//     const currentSeeker = await Seeker.findById(seekerId)
-//     selectedJobPost.seekers.push(currentSeeker)
-//     await JobPost.findByIdAndUpdate(id, selectedJobPost)
-//     currentSeeker.jobPosts.push(id)
-//     await Seeker.findByIdAndUpdate(seekerId, currentSeeker)
-//     console.log(currentSeeker)
-//     // const seeker = await Seeker.findById(seekerId)
-//     // seeker.jobPosts.push(id)
-//     // selectedJobPost.seekers.push(seekerId)
-//     // await Seeker.findByIdAndUpdate(seekerId, seeker)
-//     return res.status(201).json({ seeker })
-//   } catch (error) {
-//     return res.status(500).json({ error: error.message })
-//   }
-// }
+const bookmarkJobPost = async (req,res) => {
+  try {
+    let seekerId = req.body.seekerId
+    const { id } = req.params // of the jobPost
+    const selectedJobPost = await JobPost.findById(id)
+    const currentSeeker = await Seeker.findById(seekerId)
+    selectedJobPost.seekers.push(currentSeeker)
+    await JobPost.findByIdAndUpdate(id, selectedJobPost)
+    currentSeeker.jobPosts.push(id)
+    await Seeker.findByIdAndUpdate(seekerId, currentSeeker)
+    console.log(currentSeeker)
+    return res.status(201).json({ currentSeeker })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
 
 const verifyToken = (req,res,next) => {
   const { token } = res.locals
@@ -144,7 +140,7 @@ module.exports = {
   getSeekerById,
   updateSeekerById,
   deleteSeekerById,
-  // bookmarkJobPost,
+  bookmarkJobPost,
   verifyToken,
   stripToken
 }

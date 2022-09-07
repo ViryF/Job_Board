@@ -14,7 +14,6 @@
 * Bootstrap
 * React
 * MongoDB / Atlas
-  * Adzuna API
 * Heroku
 * Firebase
 * Multer

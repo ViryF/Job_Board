@@ -6,9 +6,8 @@ const { jobPostController, employerController, seekerController } = require('../
 router.post('/post', employerController.stripToken, employerController.verifyToken, jobPostController.createJobPost)
 
 // get routes
-router.get('/', jobPostController.getAllJobPosts) //seekerController.stripToken, seekerController.verifyToken - 
-// waiting on the bookmark function to protect this route again
-
+router.get('/', seekerController.stripToken, seekerController.verifyToken, jobPostController.getAllJobPosts) // - 
+router.get('/latest', jobPostController.getLatestJobPosts)
 
 
 

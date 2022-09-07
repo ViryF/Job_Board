@@ -11,7 +11,7 @@ router.get('/:id', seekerController.stripToken, seekerController.verifyToken, se
 router.post('/login', seekerController.LoginSeeker)
 router.post('/register', seekerController.registerSeeker)
 router.post('/new', seekerController.createSeeker)
-// router.post('/:id', seekerController.bookmarkJobPost)
+router.post('/:id', seekerController.stripToken, seekerController.verifyToken, seekerController.bookmarkJobPost)
 
 // update routes
 router.put('/:id', seekerController.stripToken, seekerController.verifyToken, seekerController.updateSeekerById)
