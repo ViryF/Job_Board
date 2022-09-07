@@ -31,7 +31,7 @@ const RegisterAsSeeker = () => {
       confirmPassword: seekerFormValues.confirmPassword
     })
     setSeekerFormValues({ initialSeekerFormValues })
-    navigate('/signin') // navigate to signIn page
+    navigate('/login') // navigate to signIn page
   }
 
   return (
