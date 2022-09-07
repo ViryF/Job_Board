@@ -28,18 +28,12 @@ const RegisterAsEmployer = () => {
       password: employerFormValues.password,
       confirmPassword: employerFormValues.confirmPassword
     })
-    setEmployerFormValues({
-      profilePicture: 'https://png.pngtree.com/element_our/20200610/ourmid/pngtree-character-default-avatar-image_2237203.jpg',
-      email: '',
-      companyName: '',
-      password: '',
-      confirmPassword: ''
-    })
+    setEmployerFormValues({ initialEmployerFormValues })
     navigate('/signin') // navigate to signIn page
   }
 
 return (
-  <div className="signin-col">
+  <div className="employerName">
     <div className="card-overlay centered">
       <form className="col" onSubmit={handleSubmit}>
         <div className="input-wrapper">
@@ -62,8 +56,8 @@ return (
           <input onChange={handleChange} name="confirmPassword" type="text" placeholder="Confirm your password" value={employerFormValues.confirmPassword} required />
         </div>
         <button
-          disabled={!employerFormValues.email || !employerFormValues.companyName || (!employerFormValues.password && employerFormValues.confirmPassword === employerFormValues.password) }
-        >Register as Employer</button>
+          disabled={!employerFormValues.email || !employerFormValues.companyName || (!employerFormValues.password && employerFormValues.confirmPassword === employerFormValues.password)}
+        >Register this Employer</button>
       </form>
     </div>
   </div>
