@@ -1,3 +1,4 @@
+import Register from './components/Register'
 import Feed from './components/Feed';
 import Nav from './components/Nav'
 import React from 'react';
@@ -11,24 +12,7 @@ const BASE_URL = 'http://localhost:3001/api'
 
 function App() {
 
-const initialEmployerSignUpValues = {
-  profilePicture: '',
-  email: '',
-  companyName: '',
-  password: '',
-  confirmPassword: ''
-}
-
-const initialSeekerSignUpValues = {
-  profilePicture: '',
-  email: '',
-  firstName: '',
-  lastName: '',
-  password: '',
-  confirmPassword: ''
-}
-
-const initialSignInValues = {
+const initialLoginValues = {
   email: '',
   password: ''
 }
@@ -37,12 +21,11 @@ const initialSignInValues = {
 const [latestJobPosts, setLatestJobPosts] = useState([])
 const [jobPosts, setJobPosts] = useState([])
 const [selectedJobPost, setSelectedJobPost] = useState(null)
-const [user, setUser] = useState(null)
-const [employerSignUpValues, setEmployerSignUpValues] = useState(initialEmployerSignUpValues)
-const [seekerSignUpValues, setSeekerSignUpValues] = useState(initialSeekerSignUpValues)
-const [signInValues, setSignInValues] = useState(initialSignInValues)
+const [LoginValues, setLoginValues] = useState(initialLoginValues)
 const [profileDetails, setProfileDetails] = useState([])
 const [authenticated, toggleAuthenticated] = useState(false)
+const [user, setUser] = useState(null)
+
 
 const getLatestJobPosts = async () => {
   const latest = await axios.get(`${BASE_URL}/jobPosts/latest`)
@@ -62,6 +45,7 @@ getLatestJobPosts()
       <main>
         <Routes>
           <Route path="/" element={ <Feed latestJobPosts={ latestJobPosts } /> } />
+          <Route path="/register" element={ <Register /> } />
           {/* <Route path="/profile" element={ <Profile /> } />
           <Route path="/jobListings" element={ <JobListings /> } />
           <Route path="/jobListings/:id" element={ <JobDetails /> } /> */}
