@@ -1,6 +1,8 @@
-import { SignInUser } from "../services/Auth";
+import { SignInEmployer, SignInSeeker } from "../services/Auth";
+import axios from 'axios'
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
+const BASE_URL = 'http://localhost:3001/api'
 
 const Login = ({ setUser, toggleAuthenticated }) => {
   let navigate = useNavigate()
@@ -16,13 +18,27 @@ const Login = ({ setUser, toggleAuthenticated }) => {
     setLoginValues({ ...LoginValues, [e.target.name]: e.target.value })
   }
 
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const payload = await SignInUser(LoginValues)
-    setLoginValues({ initialLoginValues })
-    setUser(payload)
-    toggleAuthenticated(true)
-    navigate('/profile')
+    try {
+      let seeker = await axios.post(`${BASE_URL}/seekers/check`, LoginValues)
+      if (seeker.data) {
+        const payload = await SignInSeeker(LoginValues)
+        setLoginValues(initialLoginValues)
+        setUser(payload)
+        toggleAuthenticated(true)
+        navigate('/profile')
+      } else {
+        const payload = await SignInEmployer(LoginValues)
+        setLoginValues(initialLoginValues)
+        setUser(payload)
+        toggleAuthenticated(true)
+        navigate('/profile')
+      }
+    } catch (error) {
+      throw error
+    }
   }
 
 return (

@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import RegisterAsEmployer from '../components/RegisterAsEmployer'
 import RegisterAsSeeker from '../components/RegisterAsSeeker'
 
@@ -22,7 +22,6 @@ const Register = () => {
     <div className="registration-page">
     <div className="registration-nav">
       {/* <Link className="registration-links" to="/">Feed</Link> */}
-      {/* <Link className="registration-links" to="/shop">Browse</Link> */}
     </div>
     <div className="registration-container">{registration}
     <button className="switchRegistrationType" onClick={()=> {registrationType? setRegistrationType(false):setRegistrationType(true)}}>{text}</button>

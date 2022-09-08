@@ -18,9 +18,9 @@ function App() {
 
 
 const [latestJobPosts, setLatestJobPosts] = useState([])
-const [jobPosts, setJobPosts] = useState([])
-const [selectedJobPost, setSelectedJobPost] = useState(null)
-const [profileDetails, setProfileDetails] = useState([])
+// const [jobPosts, setJobPosts] = useState([])
+// const [selectedJobPost, setSelectedJobPost] = useState(null)
+// const [profileDetails, setProfileDetails] = useState([])
 const [authenticated, toggleAuthenticated] = useState(false)
 const [user, setUser] = useState(null)
 

@@ -1,4 +1,4 @@
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import React from 'react'
 
 const Nav = ({ authenticated, user, logOut}) => {
@@ -10,7 +10,7 @@ const Nav = ({ authenticated, user, logOut}) => {
           <div>
             <h4>Super Awesome Job Board</h4>
             <h3>Welcome Back, {user.firstName}!</h3>
-            <img className='profilePic' src={user.profilePicture} />
+            <img className='profilePic' src={user.profilePicture} alt="The user's profile pic" />
             <div>
               <Link to="/" className='links'>Feed</Link>
               <Link to="/profile" className='links'>My Profile</Link>

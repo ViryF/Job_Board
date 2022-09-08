@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { RegisterUser } from "../services/Auth"
+import { RegisterSeeker } from "../services/Auth"
 import { useNavigate } from 'react-router-dom'
 
 const RegisterAsSeeker = () => {
@@ -22,7 +22,7 @@ const RegisterAsSeeker = () => {
   
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await RegisterUser({
+    await RegisterSeeker({
       profilePicture: seekerFormValues.profilePicture,
       email: seekerFormValues.email,
       firstName: seekerFormValues.firstName,
