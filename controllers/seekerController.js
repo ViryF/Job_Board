@@ -1,4 +1,4 @@
-const { Seeker, JobPost } = require('../models')
+const { Seeker, JobPost, Employer } = require('../models')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const express = require('express')
@@ -61,6 +61,24 @@ const getSeekerById = async (req,res) => {
       return res.status(200).json({ seeker })
     }
     return res.status(404).send('Seeker with the ID requested does not exist!')
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
+const getUserByEmail = async (req,res) => { 
+  try {
+    let { email } = req.body
+    const seeker = await Seeker.findOne({email: email})
+    if(seeker) {
+      return res.status(200).send(true)
+    } else if (!seeker) {
+      const employer = await Employer.findOne({email: email})
+      if(employer) {
+        return res.status(200).send(false)
+      }
+    }
+    return res.status(404).send('User with the email requested does not exist!')
   } catch (error) {
     return res.status(500).send(error.message)
   }
@@ -138,6 +156,7 @@ const CheckSession = async (req, res) => {
 }
 
 module.exports = {
+  getUserByEmail,
   registerSeeker,
   LoginSeeker,
   createSeeker,

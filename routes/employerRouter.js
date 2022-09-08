@@ -1,11 +1,12 @@
 const { Router } = require('express')
 const router = Router()
 const { employerController } = require('../controllers')
+const controller = require('../controllers/authController')
 
 // get routes
 router.get('/', employerController.stripToken, employerController.verifyToken, employerController.getAllEmployers)
+router.get('/session', employerController.stripToken, employerController.verifyToken, controller.CheckSession) //employerController.CheckSession
 router.get('/:id', employerController.stripToken, employerController.verifyToken, employerController.getEmployerById)
-router.get('/session', employerController.stripToken, employerController.verifyToken, employerController.CheckSession)
 
 // post routes
 router.post('/login', employerController.LoginEmployer)

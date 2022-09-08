@@ -1,7 +1,6 @@
 const { Employer } = require('../models')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const express = require('express')
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS)
 const APP_SECRET = `${process.env.APP_SECRET}`
 
@@ -92,15 +91,17 @@ const deleteEmployerById = async (req,res) => {
 
 const verifyToken = (req,res,next) => {
   const { token } = res.locals
-  try {
+  // try {
     let payload = jwt.verify(token, APP_SECRET)
     if (payload) {
+      res.locals.payload = payload
+      console.log("PAYLOAD", res.locals.payload)
       return next()
     }
     res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
-  } catch (error) {
-    res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
-  }
+  // } catch (error) {
+    // res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
+  // }
 }
 
 const stripToken = (req,res,next) => {
@@ -116,6 +117,7 @@ const stripToken = (req,res,next) => {
 }
 
 const CheckSession = async (req, res) => {
+  console.log("CHECK SESSION")
   const { payload } = res.locals
   res.send(payload)
 }

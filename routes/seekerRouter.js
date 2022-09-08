@@ -9,6 +9,7 @@ router.get('/:id', seekerController.stripToken, seekerController.verifyToken, se
 router.get('/session', seekerController.stripToken, seekerController.verifyToken, seekerController.CheckSession)
 
 // post routes
+router.post('/check', seekerController.getUserByEmail)
 router.post('/login', seekerController.LoginSeeker)
 router.post('/register', seekerController.registerSeeker)
 router.post('/new', seekerController.createSeeker)

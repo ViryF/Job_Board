@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
-import { RegisterUser } from "../services/Auth";
+import { registerEmployer } from "../services/Auth";
 
 const RegisterAsEmployer = () => {
   let navigate = useNavigate()
@@ -21,7 +21,7 @@ const RegisterAsEmployer = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await RegisterUser({
+    await registerEmployer({
       profilePicture: employerFormValues.profilePicture,
       email: employerFormValues.email,
       companyName: employerFormValues.companyName,
