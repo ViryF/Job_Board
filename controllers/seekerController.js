@@ -132,6 +132,11 @@ const stripToken = (req,res,next) => {
   }
 }
 
+const CheckSession = async (req, res) => {
+  const { payload } = res.locals
+  res.send(payload)
+}
+
 module.exports = {
   registerSeeker,
   LoginSeeker,
@@ -142,5 +147,6 @@ module.exports = {
   deleteSeekerById,
   bookmarkJobPost,
   verifyToken,
-  stripToken
+  stripToken,
+  CheckSession
 }

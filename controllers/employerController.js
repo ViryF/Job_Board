@@ -115,6 +115,11 @@ const stripToken = (req,res,next) => {
   }
 }
 
+const CheckSession = async (req, res) => {
+  const { payload } = res.locals
+  res.send(payload)
+}
+
 module.exports = {
   createEmployer,
   registerEmployer,
@@ -124,5 +129,6 @@ module.exports = {
   updateEmployerById,
   deleteEmployerById,
   verifyToken, 
-  stripToken
+  stripToken,
+  CheckSession
 }

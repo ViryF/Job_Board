@@ -6,6 +6,7 @@ const { seekerController } = require('../controllers')
 
 router.get('/', seekerController.stripToken, seekerController.verifyToken, seekerController.getAllSeekers)
 router.get('/:id', seekerController.stripToken, seekerController.verifyToken, seekerController.getSeekerById)
+router.get('/session', seekerController.stripToken, seekerController.verifyToken, seekerController.CheckSession)
 
 // post routes
 router.post('/login', seekerController.LoginSeeker)
