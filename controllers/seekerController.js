@@ -18,18 +18,21 @@ const registerSeeker = async (req,res) => {
 }
 
 const LoginSeeker = async (req,res) => {
-  await Seeker.findOne({ email: req.body.email }, (err, foundSeeker) => {
-    const isMatched = bcrypt.compare(req.body.password, foundSeeker.passwordDigest)
-    if (!foundSeeker || !isMatched) {
-      return res.render({ error: "Unauthorized!"})
+  try {
+    const seeker = await Seeker.findOne({email: req.body.email })
+    const isMatched = bcrypt.compare(req.body.password, seeker.passwordDigest)
+
+    if(seeker && isMatched) {
+      let payload = {
+        id: seeker.id,
+        email: seeker.email
+      }
+      let token = jwt.sign(payload, APP_SECRET)
+      return res.send({ seeker: payload, token })
     }
-    let payload = {
-      id: foundSeeker.id,
-      email: foundSeeker.email
-    }
-    let token = jwt.sign(payload, APP_SECRET)
-    return res.send({ seeker: payload, token })
-  }).clone()
+  } catch (error) {
+    throw error
+  }
 }
 
 const createSeeker = async (req,res) => {
@@ -118,7 +121,6 @@ const bookmarkJobPost = async (req,res) => {
     await JobPost.findByIdAndUpdate(id, selectedJobPost)
     currentSeeker.jobPosts.push(id)
     await Seeker.findByIdAndUpdate(seekerId, currentSeeker)
-    console.log(currentSeeker)
     return res.status(201).json({ currentSeeker })
   } catch (error) {
     return res.status(500).json({ error: error.message })
@@ -130,6 +132,7 @@ const verifyToken = (req,res,next) => {
   try {
     let payload = jwt.verify(token, APP_SECRET)
     if (payload) {
+
       return next()
     }
     res.status(401).send({ status: 'Error', msg: 'Unauthorized' })

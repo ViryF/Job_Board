@@ -16,18 +16,21 @@ const registerEmployer = async (req,res) => {
 }
 
 const LoginEmployer = async (req,res) => {
-  await Employer.findOne({ email: req.body.email }, (err, foundEmployer) => {
-    const isMatched = bcrypt.compare(req.body.password, foundEmployer.passwordDigest)
-    if (!foundEmployer || !isMatched) {
-      return res.render({ error: "Unauthorized!"})
+  try {
+    const employer = await Employer.findOne({ email: req.body.email })
+    const isMatched = bcrypt.compare(req.body.password, employer.passwordDigest)
+    
+    if(employer && isMatched) {
+      let payload = {
+        id: employer.id,
+        email: employer.email
+      }
+      let token = jwt.sign(payload, APP_SECRET)
+      return res.send({ employer: payload, token })
     }
-    let payload = {
-      id: foundEmployer.id,
-      email: foundEmployer.email
-    }
-    let token = jwt.sign(payload, APP_SECRET)
-    return res.send({ employer: payload, token })
-  }).clone()
+  } catch (error) {
+    throw error
+  }
 }
 
 const createEmployer = async (req,res) => {

@@ -6,7 +6,7 @@ const { jobPostController, employerController, seekerController } = require('../
 router.post('/post', employerController.stripToken, employerController.verifyToken, jobPostController.createJobPost)
 
 // get routes
-router.get('/all',  jobPostController.getAllJobPosts) //seekerController.stripToken, seekerController.verifyToken,
+router.get('/all', seekerController.stripToken, seekerController.verifyToken, jobPostController.getAllJobPosts) 
 router.get('/latest', jobPostController.getLatestJobPosts)
 router.get('/:id', employerController.stripToken, employerController.verifyToken, jobPostController.getJobPostById)
 
