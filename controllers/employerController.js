@@ -91,17 +91,12 @@ const deleteEmployerById = async (req,res) => {
 
 const verifyToken = (req,res,next) => {
   const { token } = res.locals
-  // try {
     let payload = jwt.verify(token, APP_SECRET)
     if (payload) {
       res.locals.payload = payload
-      console.log("PAYLOAD", res.locals.payload)
       return next()
     }
     res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
-  // } catch (error) {
-    // res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
-  // }
 }
 
 const stripToken = (req,res,next) => {
@@ -117,7 +112,6 @@ const stripToken = (req,res,next) => {
 }
 
 const CheckSession = async (req, res) => {
-  console.log("CHECK SESSION")
   const { payload } = res.locals
   res.send(payload)
 }

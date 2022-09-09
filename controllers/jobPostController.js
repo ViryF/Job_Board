@@ -20,9 +20,18 @@ const createJobPost = async (req,res) => {
 
 const getAllJobPosts = async (req,res) => {
   try {
-    let employerId = req.body.employer
-    const jobPosts = await JobPost.find(employerId)
+    const jobPosts = await JobPost.find()
     return res.status(200).json(jobPosts)
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
+const getJobPostById = async (req,res) => {
+  try {
+    const { id } = req.params
+    const jobPost = await JobPost.findById(id)
+    return res.status(200).json(jobPost)
   } catch (error) {
     return res.status(500).send(error.message)
   }
@@ -94,6 +103,7 @@ const getLatestJobPosts = async (req,res) => {
 module.exports = {
   createJobPost,
   getAllJobPosts,
+  getJobPostById,
   // getJobPostsByEmployer,
   updateJobPostById,
   deleteJobPostById,
