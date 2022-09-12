@@ -113,13 +113,12 @@ const deleteSeekerById = async (req,res) => {
 
 const bookmarkJobPost = async (req,res) => {
   try {
-    let seekerId = req.body.seekerId
-    const { id } = req.params // of the jobPost
-    const selectedJobPost = await JobPost.findById(id)
+    const { seekerId, jobPostId } = req.params
+    const selectedJobPost = await JobPost.findById(jobPostId)
     const currentSeeker = await Seeker.findById(seekerId)
     selectedJobPost.seekers.push(currentSeeker)
-    await JobPost.findByIdAndUpdate(id, selectedJobPost)
-    currentSeeker.jobPosts.push(id)
+    await JobPost.findByIdAndUpdate(jobPostId, selectedJobPost)
+    currentSeeker.jobPosts.push(jobPostId)
     await Seeker.findByIdAndUpdate(seekerId, currentSeeker)
     return res.status(201).json({ currentSeeker })
   } catch (error) {
