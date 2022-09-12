@@ -8,11 +8,7 @@ router.post('/post', employerController.stripToken, employerController.verifyTok
 // get routes
 router.get('/all', seekerController.stripToken, seekerController.verifyToken, jobPostController.getAllJobPosts) 
 router.get('/latest', jobPostController.getLatestJobPosts)
-router.get('/:id',  jobPostController.getJobPostById) //employerController.stripToken, employerController.verifyToken,
-
-
-
-// router.get('/:employerid', jobPostController.getJobPostsByEmployer) //this function is not working yet.
+router.get('/:id',  jobPostController.getJobPostById) 
 
 // update routes
 router.put('/:id', employerController.stripToken, employerController.verifyToken, jobPostController.updateJobPostById)
