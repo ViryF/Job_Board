@@ -17,15 +17,27 @@
 
 ***
 ## ***Screenshots*** 
-### **Image header 1**
-![Image]()
-### **Image header 2**
-![Image]()
+### **Register Page**
+![Register Employer](https://media.discordapp.net/attachments/994993050885570580/1019418782084644874/unknown.png)
+![Register Seeker](https://media.discordapp.net/attachments/994993050885570580/1019418931594809404/unknown.png)
+### **Login Page**
+![Login Page](https://media.discordapp.net/attachments/994993050885570580/1019417734297178172/unknown.png)
+### **Feed Page**
+![Feed Page](https://media.discordapp.net/attachments/994993050885570580/1019417894578307183/unknown.png?width=956&height=712)
+### **Profile Page**
+![Seeker Profile](https://media.discordapp.net/attachments/994993050885570580/1019418261156270151/unknown.png)
+![Employer Profile](https://media.discordapp.net/attachments/994993050885570580/1019418261156270151/unknown.png)
+### **Edit Post Form**
+![Edit Post](https://media.discordapp.net/attachments/994993050885570580/1019419677937647647/unknown.png?width=706&height=853)
+### **Add Post Form**
+![Add Post](https://media.discordapp.net/attachments/994993050885570580/1019420121900515399/unknown.png?width=670&height=853)
+
 ***
 ## ***Future Updates***
 - [] To enable a live chat function between job seekers and the employers.
 - [] To implement filters for which the job seekers can quickly look for different types of jobs. 
 - [] To allow employers to put a resume form that job seekers can easily use to submit an application through the same website.  
+- [] Add a geolocation function to help seekers see job posts around their area. 
 ***
 ## ***Credits***
 ### Drawio Planning: [Drawio](https://drive.google.com/file/d/1pAuQHibs2pk4Cz6AieNckGC-EtY0A83j/view?usp=sharing)
