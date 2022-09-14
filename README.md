@@ -1,7 +1,7 @@
 # Job_Board
 # Date: 09/01/2022
 ## By: Viridiana Flores
-## [GitHub](https://github.com/ViryF) | [LinkedIn](https://www.linkedin.com/in/viridianaflores) | [DeployedApp](https://super-awesome-jobboard.herokuapp.com/feed)
+## [GitHub](https://github.com/ViryF) | [LinkedIn](https://www.linkedin.com/in/viridianaflores) | [DeployedApp](https://super-awesome-jobboard.herokuapp.com/feed) | [Front End Repo](https://github.com/ViryF/Job_Board_FrontEnd)
 ***
 ## ***Description***
 ## There are two sides to every coin. On one side, the goal of this application is to make it easy for employers to be able to post a job opening for other people to view and apply to. The other side of this coin is for job seekers to be able to look for any job posting they may be interested in, and find it with a simple search. This way, they are able to apply to whichever job(s) they choose to. The end goal, is to facilitate the job search and give employers new great employees. 
